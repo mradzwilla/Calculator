@@ -15,6 +15,11 @@ class CalculatorBrain
     func setOperand(operand: Double){
         accumulator = operand
     }
+    
+    func clear(){
+        accumulator = 0.0
+        pending = nil
+    }
     var operations: Dictionary<String,Operation> = [
         "π": Operation.Constant(M_PI),
         "e": Operation.Constant(M_E),

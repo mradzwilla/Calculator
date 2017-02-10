@@ -26,6 +26,25 @@ class ViewController: UIViewController {
         userIsInTheMiddleOfTyping = true
     }
     
+    @IBAction func touchDecimal(_ sender: UIButton) {
+        let currentNumberInDisplay = displayValue
+        let isInteger = floor(currentNumberInDisplay) == currentNumberInDisplay
+        
+        if isInteger == true {
+            display.text = "\(Int(currentNumberInDisplay))."
+        }
+        userIsInTheMiddleOfTyping = true
+
+    }
+    
+    private var brain = CalculatorBrain()
+    
+    @IBAction func clear(_ sender: Any) {
+        display.text = "0"
+        userIsInTheMiddleOfTyping = false
+        brain.clear()
+    }
+    
     var displayValue: Double {
         get {
             return Double(display.text!)!
@@ -34,8 +53,6 @@ class ViewController: UIViewController {
             display.text = String(newValue)
         }
     }
-    
-    private var brain = CalculatorBrain()
     
     @IBAction private func performOperation(_ sender: UIButton) {
         if userIsInTheMiddleOfTyping{
